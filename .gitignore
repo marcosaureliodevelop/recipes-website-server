@@ -1,0 +1,51 @@
+# Bytecode de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de banco de dados
+*.sqlite3
+*.db
+*.db-journal
+
+# Pastas do Flask
+instance/
+*.py[cod]
+*.so
+
+# Arquivos de configuração
+*.env
+.env
+
+# Diretórios de logs
+logs/
+*.log
+
+# Pasta de dependências
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Migrations
+migrations/
+
+# Arquivos temporários
+*.bak
+*.swp
+*.swo
+*.tmp
+*~
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
