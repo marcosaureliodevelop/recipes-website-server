@@ -106,7 +106,7 @@ def get_recipe(id_recipe):
     recipe = Recipes.get(id_recipe)
     return jsonify({
         "status" : False, 
-        "recipe" : recipe.registration_date
+        "recipe" : recipe
     })
     
 def delete_recipe(id_recipe):
