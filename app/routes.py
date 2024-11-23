@@ -1,6 +1,7 @@
 from .controllers.recipes_controller import create_recipe, update_recipe, get_all_recipes, get_recipe, delete_recipe
 from .controllers.ingredients_controller import create_ingredient, update_ingredient, get_all_ingredients, get_ingredient, delete_ingredient
 from .controllers.preparation_methods_controller import create_method, update_method, get_all_methods, get_method, delete_method
+from .controllers.images_controller import create_image, get_image
 
 def register_routes(app):
     
@@ -68,3 +69,13 @@ def register_routes(app):
     @app.route('/methods/delete/<int:id_method>', methods=['DELETE'])
     def delete_method_route(id_method):
         return delete_method(id_method)
+    
+    
+    # image routes
+    @app.route('/images/create', methods=['POST'])
+    def create_image_route():
+        return create_image()
+
+    @app.route('/images/get/<int:id_image>', methods=['GET'])
+    def get_image_route(id_image):
+        return get_image(id_image)
