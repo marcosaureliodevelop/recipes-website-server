@@ -1,4 +1,4 @@
-from ..extensions import db;
+from ..extensions import db
 
 class Recipes(db.Model):
     id_recipe = db.Column(db.Integer, primary_key=True)
@@ -9,7 +9,7 @@ class Recipes(db.Model):
     portions = db.Column(db.Integer, nullable=False)
     status = db.Column(db.Boolean, nullable=False)
     registration_date = db.Column(db.Integer, nullable=False)
-
+    
     @classmethod
     def insert(cls, id_image, name, description, time, portions, status, registration_date):
         new_recipe = cls(
@@ -43,14 +43,16 @@ class Recipes(db.Model):
         else:
             return None
 
-
     @classmethod
     def get(cls, id_recipe):
-        return cls.query.get(id_recipe)
+        recipe = cls.query.get(id_recipe)
+        return recipe.to_dict()
 
     @classmethod
     def get_all(cls):
-        return cls.query.all()
+        recipes = cls.query.all()
+        recipes_dict = [recipe.to_dict() for recipe in recipes]
+        return recipes_dict
 
     @classmethod
     def delete(cls, id_recipe):
@@ -62,3 +64,16 @@ class Recipes(db.Model):
             return True
         else:
             return False
+        
+    # Método to_dict que converte a instância de Recipe para um dicionário
+    def to_dict(self):
+        return {
+            "id_recipe": self.id_recipe,
+            "id_image": self.id_image,
+            "name": self.name,
+            "description": self.description,
+            "time": self.time,
+            "portions": self.portions,
+            "status": self.status,
+            "registration_date": self.registration_date
+        }

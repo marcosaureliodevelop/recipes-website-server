@@ -59,14 +59,6 @@ def update_recipe(id_recipe):
             "message": "Erro: Nenhum dado encontrado na requisição."
         }), 400
         
-    id_recipe = request.args.get('id_recipe')
-    
-    if not data:
-        return jsonify({
-            "status": False,
-            "message": "Erro: Nenhum dado encontrado na requisição."
-        }), 400
-    
     required_fields = ['id_image', 'name', 'description', 'time', 'portions', 'status']
     missing_fields = [field for field in required_fields if field not in data]
     
@@ -97,9 +89,8 @@ def update_recipe(id_recipe):
         return jsonify({
             "status": True,
             "message": "Receita atualizada com sucesso!"
-        }), 204 
-    
-    return jsonify({
+        }), 200 
+    else: jsonify({
         "status": False,
         "message": "Erro ao tentar atualizar esta receita."
     }), 400
@@ -107,15 +98,15 @@ def update_recipe(id_recipe):
 def get_all_recipes():
     recipes = Recipes.get_all()
     return jsonify({
-            "status" : True,
-            "recipes" : recipes
-        })
+        "status" : True,
+        "recipes" : recipes
+    })
     
 def get_recipe(id_recipe):
     recipe = Recipes.get(id_recipe)
     return jsonify({
         "status" : False, 
-        "recipe" : recipe
+        "recipe" : recipe.registration_date
     })
     
 def delete_recipe(id_recipe):
