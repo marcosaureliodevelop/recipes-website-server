@@ -7,15 +7,15 @@ class Images(db.Model):
     
     @classmethod
     def insert(cls, path, alt):
-        new_method = cls(
+        new_image = cls(
             path=path,
             alt=alt
         )
         
-        db.session.add(new_method)
+        db.session.add(new_image)
         db.session.commit()
         
-        return new_method
+        return new_image
 
     @classmethod
     def get(cls, id_image):

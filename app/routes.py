@@ -2,6 +2,7 @@ from .controllers.recipes_controller import create_recipe, update_recipe, get_al
 from .controllers.ingredients_controller import create_ingredient, update_ingredient, get_all_ingredients, get_ingredient, delete_ingredient
 from .controllers.preparation_methods_controller import create_method, update_method, get_all_methods, get_method, delete_method
 from .controllers.images_controller import create_image, get_image
+from .controllers.categories_controller import create_category, update_category, get_all_categories, get_category, delete_category
 
 def register_routes(app):
     
@@ -79,3 +80,25 @@ def register_routes(app):
     @app.route('/images/get/<int:id_image>', methods=['GET'])
     def get_image_route(id_image):
         return get_image(id_image)
+    
+    
+    # categories routes
+    @app.route('/categories/create', methods=['POST'])
+    def create_category_route():
+        return create_category()
+
+    @app.route('/categories/update/<int:id_category>', methods=['PATCH'])
+    def update_category_route(id_category):
+        return update_category(id_category)
+
+    @app.route('/categories/get_all', methods=['GET'])
+    def get_all_categories_route():
+        return get_all_categories()
+
+    @app.route('/categories/get/<int:id_category>', methods=['GET'])
+    def get_category_route(id_category):
+        return get_category(id_category)
+
+    @app.route('/categories/delete/<int:id_category>', methods=['DELETE'])
+    def delete_category_route(id_category):
+        return delete_category(id_category)
