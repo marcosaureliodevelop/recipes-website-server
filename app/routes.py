@@ -1,5 +1,6 @@
 from .controllers.recipes_controller import create_recipe, update_recipe, get_all_recipes, get_recipe, delete_recipe
 from .controllers.ingredients_controller import create_ingredient, update_ingredient, get_all_ingredients, get_ingredient, delete_ingredient
+from .controllers.preparation_methods_controller import create_method, update_method, get_all_methods, get_method, delete_method
 
 def register_routes(app):
     
@@ -45,3 +46,25 @@ def register_routes(app):
     @app.route('/ingredients/delete/<int:id_ingredient>', methods=['DELETE'])
     def delete_ingredient_route(id_ingredient):
         return delete_ingredient(id_ingredient)
+    
+    
+    # methods routes
+    @app.route('/methods/create', methods=['POST'])
+    def create_method_route():
+        return create_method()
+
+    @app.route('/methods/update/<int:id_method>', methods=['PATCH'])
+    def update_method_route(id_method):
+        return update_method(id_method)
+
+    @app.route('/methods/get_all', methods=['GET'])
+    def get_all_methods_route():
+        return get_all_methods()
+
+    @app.route('/methods/get/<int:id_method>', methods=['GET'])
+    def get_method_route(id_method):
+        return get_method(id_method)
+
+    @app.route('/methods/delete/<int:id_method>', methods=['DELETE'])
+    def delete_method_route(id_method):
+        return delete_method(id_method)
