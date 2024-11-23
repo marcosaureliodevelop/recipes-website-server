@@ -39,6 +39,12 @@ class Ingredients(db.Model):
         ingredients = cls.query.all()
         ingredient_dict = [ingredient.to_dict() for ingredient in ingredients]
         return ingredient_dict
+    
+    @classmethod
+    def get_for_recipe(cls, id_recipe):
+        ingredients = cls.query.filter_by(id_recipe=id_recipe).all()
+        ingredient_dict = [ingredient.to_dict() for ingredient in ingredients]
+        return ingredient_dict
 
     @classmethod
     def delete(cls, id_ingredient):

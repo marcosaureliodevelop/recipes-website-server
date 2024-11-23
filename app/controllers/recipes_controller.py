@@ -2,6 +2,11 @@ from flask import request, jsonify
 from ..models.recipes import Recipes
 from datetime import datetime
 
+from ..models.images import Images
+from ..models.ingredients import Ingredients
+from ..models.recipes_categories import RecipesCategories
+from ..models.preparation_methods import PreparationMethods
+
 def create_recipe():
     data = request.get_json()
     
@@ -104,6 +109,12 @@ def get_all_recipes():
     
 def get_recipe(id_recipe):
     recipe = Recipes.get(id_recipe)
+    
+    recipe['image'] = Images.get(recipe['id_image'])
+    recipe['ingredients'] = Ingredients.get_for_recipe(recipe['id_recipe'])
+    recipe['categories'] = RecipesCategories.get_for_recipe(recipe['id_recipe'])
+    recipe['methods'] = PreparationMethods.get_for_recipe(recipe['id_recipe'])
+
     return jsonify({
         "status" : False, 
         "recipe" : recipe

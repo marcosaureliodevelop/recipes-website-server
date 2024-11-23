@@ -39,6 +39,12 @@ class PreparationMethods(db.Model):
         methods = cls.query.all()
         methods_dict = [method.to_dict() for method in methods]
         return methods_dict
+    
+    @classmethod
+    def get_for_recipe(cls, id_recipe):
+        methods = cls.query.filter_by(id_recipe=id_recipe).all()
+        methods_dict = [method.to_dict() for method in methods]
+        return methods_dict
 
     @classmethod
     def delete(cls, id_method):

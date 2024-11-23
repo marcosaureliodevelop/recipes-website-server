@@ -39,6 +39,12 @@ class RecipesCategories(db.Model):
         recipes_categories = cls.query.all()
         recipes_categories_dict = [recipe_category.to_dict() for recipe_category in recipes_categories]
         return recipes_categories_dict
+    
+    @classmethod
+    def get_for_recipe(cls, id_recipe):
+        recipes_categories = cls.query.filter_by(id_recipe=id_recipe).all()
+        recipes_categories_dict = [recipe_category.to_dict() for recipe_category in recipes_categories]
+        return recipes_categories_dict
 
     @classmethod
     def delete(cls, id_recipe_category):
